@@ -19,7 +19,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    
+   
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
@@ -30,9 +30,9 @@ jobs:
     - name: Compile Java Code
       run: |
         mkdir -p out
-        javac -d out -cp ".:src/main/java:src/test/java" $(find src/main/java src/test/java -name "*.java")
+        javac -d out -cp ".:src/main/java/main:src/test/java/test" $(find src/main/java/main src/test/java/test -name "*.java")
 
    
     - name: Run Unit Tests
       run: |
-        java -cp "out:src/main/java:src/test/java" org.junit.runner.JUnitCore test.LoginAppTest
+        java -cp "out:src/main/java/main:src/test/java/test" org.junit.runner.JUnitCore test.LoginAppTest
