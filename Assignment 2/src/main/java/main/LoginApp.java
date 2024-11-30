@@ -43,11 +43,12 @@ public class LoginApp extends JFrame {
             String password = new String(passwordField.getPassword());
             LoginService loginService = new LoginService();
 
+            // Use the authenticateUser method
             String userName = loginService.authenticateUser(email, password);
             if (userName != null) {
                 JOptionPane.showMessageDialog(null, "Welcome, " + userName + "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "User not found.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User not found or incorrect password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
