@@ -1,4 +1,4 @@
-name: Java CI with MySQL Service
+name: JavaCi
 
 on:
   push:
