@@ -47,9 +47,9 @@ public class LoginApp extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             String email = emailField.getText();
-            String password = new String(passwordField.getPassword()); // Password is ignored for validation
+            String password = new String(passwordField.getPassword());
 
-            String userName = authenticateUser(email);
+            String userName = authenticateUser(email, password);
             if (userName != null) {
                 JOptionPane.showMessageDialog(null, "Welcome, " + userName + "!", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -58,12 +58,16 @@ public class LoginApp extends JFrame {
         }
     }
 
-    private String authenticateUser(String email) {
+    // Updated authenticateUser method to accept both email and password
+    public String authenticateUser(String email, String password) {
         String userName = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            // Intentionally incorrect query for testing purposes
             String query = "SELECT name FROM User WHERE Email = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, email);
+            stmt.setString(2, password); // This parameter will cause an issue since it's not used in the query
+
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
