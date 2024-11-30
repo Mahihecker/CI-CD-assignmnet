@@ -15,24 +15,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-    - name: Checkout repository
-      uses: actions/checkout@v3
 
-    
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'         
-        distribution: 'temurin'    
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    
-    - name: Compile Java Code
-      run: |
-        mkdir -p "Assignment 2/out"  
-        javac -d "Assignment 2/out" -cp ".:Assignment 2/src/main/java/main:Assignment 2/src/test/java/test" $(find "Assignment 2/src/main/java/main" "Assignment 2/src/test/java/test" -name "*.java")
 
-   
-    - name: Run Unit Tests
-      run: |
-        java -cp "Assignment 2/out:Assignment 2/src/main/java/main:Assignment 2/src/test/java/test" org.junit.runner.JUnitCore test.LoginAppTest
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+
+      - name: Compile Java Code
+        run: |
+          mkdir -p out  # Create the out folder dynamically at the root level
+          javac -d out -cp ".:Assignment 2/src/main/java/main:Assignment 2/src/test/java/test" $(find "Assignment 2/src/main/java/main" "Assignment 2/src/test/java/test" -name "*.java")
+      
+
+      - name: Run Unit Tests
+        run: |
+          java -cp "out:Assignment 2/src/main/java/main:Assignment 2/src/test/java/test" org.junit.runner.JUnitCore test.LoginAppTest
