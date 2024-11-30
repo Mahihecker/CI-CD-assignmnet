@@ -12,6 +12,7 @@ public class LoginAppTest {
 
     @Before
     public void setUp() {
+        // Initialize the service class instead of the GUI class
         loginService = new LoginService();
     }
 
