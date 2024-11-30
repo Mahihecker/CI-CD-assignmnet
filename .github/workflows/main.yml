@@ -18,23 +18,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List Repository Files
-        run: ls -R
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: Download Dependencies
+        run: |
+          mkdir -p lib
+          curl -L -o lib/junit-4.13.2.jar https://search.maven.org/remotecontent?filepath=junit/junit/4.13.2/junit-4.13.2.jar
+          curl -L -o lib/hamcrest-core-1.3.jar https://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+          curl -L -o lib/mysql-connector-j-9.1.0.jar https://search.maven.org/remotecontent?filepath=mysql/mysql-connector-j/9.1.0/mysql-connector-j-9.1.0.jar
+
       - name: Compile Java Code
         run: |
-          mkdir -p out  
-          javac -d out -cp ".:Assignment 2/src/main:Assignment 2/src/test" \
-            "Assignment 2/src/main/java/main/LoginApp.java" \
-            "Assignment 2/src/test/java/test/LoginAppTest.java"
+          mkdir -p out
+          javac -d out -cp ".:lib/*:Assignment 2/src/main:Assignment 2/src/test" \
+            $(find "Assignment 2/src/main" "Assignment 2/src/test" -name "*.java")
 
       - name: Run Unit Tests
         run: |
-          java -cp "out:Assignment 2/src/main:Assignment 2/src/test" \
+          java -cp "out:lib/*:Assignment 2/src/main:Assignment 2/src/test" \
             org.junit.runner.JUnitCore test.LoginAppTest
