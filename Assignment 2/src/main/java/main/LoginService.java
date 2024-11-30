@@ -1,3 +1,10 @@
+package main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class LoginService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/a2";
     private static final String DB_USER = "testuser";
@@ -25,3 +32,4 @@ public class LoginService {
         return userName;
     }
 }
+
