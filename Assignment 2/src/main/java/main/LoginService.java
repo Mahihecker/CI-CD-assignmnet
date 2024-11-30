@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class LoginService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/a2";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "12345678";
+    private static final String DB_PASSWORD = "Mahi_123";
 
     public String authenticateUser(String email, String password) {
         String userName = null;
