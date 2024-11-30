@@ -29,7 +29,7 @@ jobs:
 
       - name: Compile Java Code
         run: |
-          mkdir -p out  # Create the out folder dynamically at the root level
+          mkdir -p out  
           javac -d out -cp ".:Assignment 2/src/main/java/main:Assignment 2/src/test/java/test" $(find "Assignment 2/src/main/java/main" "Assignment 2/src/test/java/test" -name "*.java")
       
 
