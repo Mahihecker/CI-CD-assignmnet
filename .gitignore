@@ -2,7 +2,7 @@
 out/
 
 # IntelliJ-specific files to exclude
-.idea/workspace.xml
+Assignment 2/.idea/workspace.xml
 .idea/dataSources/
 .idea/tasks.xml
 .idea/dictionaries/
