@@ -27,8 +27,8 @@ jobs:
       - name: Compile Java Code
         run: |
           mkdir -p out  
-          javac -d out -cp ".:src/main/java:src/test/java" $(find src/main/java src/test/java -name "*.java")
+          javac -d out -cp ".:Assignment 2/src/main:Assignment 2/src/test" $(find "Assignment 2/src/main" "Assignment 2/src/test" -name "*.java")
 
       - name: Run Unit Tests
         run: |
-          java -cp "out:src/main/java:src/test/java" org.junit.runner.JUnitCore test.LoginAppTest
+          java -cp "out:Assignment 2/src/main:Assignment 2/src/test" org.junit.runner.JUnitCore test.LoginAppTest
